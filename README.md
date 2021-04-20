@@ -79,14 +79,46 @@ dots-env -p './envs/' -c 'node index.js' -e production  # use /envs/.env.product
 dots-env -p './envs/' -c 'node index.js' -e my_env_file  # use /envs/.env.my_env_file
 ```
 
+## Programmatically
 
+You can use the dots-env on your node script like this:
+
+```js
+// start.js
+const { processEnv, execCommand } = require('dots-env')
+
+processEnv().then(() => {
+  execCommand('yarn start')
+})
+
+```
+
+So, to use it you need pass the dots-env arguments to your script. Example:
+```sh
+node start.js -e staging -l
+```
+
+#### processEnv
+
+This script will do all magic and return a promise that will be resolved when .env file was created. This promise return an object with:
+```json
+{
+  envFilePath, // combination of envPath and .env[envName]
+  envFile, // .env[envName]
+  local, // boolean flag
+  argv // all arguments send to script 
+}
+```
+
+#### execCommand
+This method are a promise that execute one shell script with the env selected.
 ## 📜 Help
 
 ```text
 Usage: _ [options] <command> [...args]
 
-Options:
-  -e, --env [name]                 Set the file `.env.[fileName]` to use (default name: development)
+Arguments:
+  -e, --env [envName]                 Set the file `.env.[envName]` to use (default envName: development)
   -l, --local [boolean]            Set the `.local` file based on `--env`
   -p, --envPath [path]             Set the path of your `.env.*` files (default path: '.')
   -c, --command [command]          REQUIRED! Set the command that will execute with the selected env. 

@@ -36,7 +36,7 @@ const execCommand = (command, options = {}, argvException = []) => new Promise((
   try {
     const childProcess = spawn(
       getTerminalType(),
-      ['-c', `${ command } ${ argvs.join(' ') }`],
+      ['-c', `env-cmd -f .env ${ command } ${ argvs.join(' ') }`],
       { stdio: 'inherit', ...options }
     )
 

@@ -3,7 +3,7 @@ const path = require('path')
 const yargs = require('yargs')
 const dotenv = require('dotenv')
 
-const processEnv = ({ envPath = '' } = {}) => new Promise(
+const processEnv = () => new Promise(
   async (resolve) => {
     const { argv } = yargs.usage('Usage: $0 <command> [options]').options({
       env: {
@@ -17,10 +17,17 @@ const processEnv = ({ envPath = '' } = {}) => new Promise(
         alias: 'l',
         type: 'boolean',
         describe: 'Get .env?(.*).local'
+      },
+      envPath: {
+        alias: 'p',
+        default: '',
+        demandOption: false,
+        describe: 'Path of original .env?(.*) file',
+        nargs: 1
       }
     })
 
-    const { env, local } = argv
+    const { env, local, envPath } = argv
 
     let envFile = `.env${env ? `.${env}` : ''}`
     if (!fs.existsSync(path.resolve(process.cwd(), `${envPath}${envFile}`))) {

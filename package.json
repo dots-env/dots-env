@@ -9,7 +9,7 @@
   },
   "license": "MIT",
   "bin": {
-    "dots-env": "index.js"
+    "dots-env": "cli.js"
   },
   "devDependencies": {
     "dotenv": "^8.2.0",
