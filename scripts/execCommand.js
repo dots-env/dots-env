@@ -1,4 +1,5 @@
 const { spawn } = require('child_process')
+const path = require('path')
 
 const filter = require('lodash/filter')
 const find = require('lodash/find')
@@ -33,10 +34,12 @@ const execCommand = (command, options = {}, argvException = []) => new Promise((
     return true
   })
 
+  const envPath = path.resolve(process.cwd(), '.env')
+
   try {
     const childProcess = spawn(
       getTerminalType(),
-      ['-c', `env-cmd -f .env ${ command } ${ argvs.join(' ') }`],
+      ['-c', `env-cmd -f ${ envPath } ${ command } ${ argvs.join(' ') }`],
       { stdio: 'inherit', ...options }
     )
 
