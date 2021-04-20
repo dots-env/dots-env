@@ -5,7 +5,7 @@
   "author": "Guilherme Monte <gmonte@inf.ufsm.br>",
   "repository": {
     "type": "git",
-    "url": "http://github.com/gmonte/dots-env"
+    "url": "https://github.com/dots-env/dots-env"
   },
   "license": "MIT",
   "bin": {

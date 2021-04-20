@@ -33,6 +33,20 @@ ENV3=THE FISH
 ./node_modules/.bin/dots-env -c "node index.js"
 ```
 
+### Examples
+- Using dots-env with [Create React App](https://github.com/dots-env/react-example)
+- Using dots-env with [Create Next App](https://github.com/dots-env/next-example)
+
+### Ignoring .env
+
+Change your .env section from .gitignore to: 
+
+```
+# env files
+.env
+.env.*.local
+```
+
 ### Using env file
 
 This package assume that your project have an `.env.development` file to use it.
