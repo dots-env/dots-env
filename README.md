@@ -95,4 +95,4 @@ Options:
 
 ## 📋 Contributing Guide
 
-If you like write tests or/and improve this package, please sent your PR! :D  
+If you would like to write tests or improve this package, please sent your PR! :D  
