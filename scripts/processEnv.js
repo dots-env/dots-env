@@ -23,10 +23,11 @@ const processEnv = ({
       }
     }
 
-    console.info(`>>> Using env file: ${envFile}`)
-
-    const originalEnvPath = path.resolve(process.cwd(), `${envPath}${envFile}`)
+    const originalEnv = `${envPath}${envFile}`
+    const originalEnvPath = path.resolve(process.cwd(), originalEnv)
     const destinationEnvPath = path.resolve(process.cwd(), '.env')
+
+    console.info(`>>> Using env file: ${originalEnv}`)
 
     const createRootEnv = () => new Promise((res, rej) => {
       fs.copyFile(originalEnvPath, destinationEnvPath, (error) => {
