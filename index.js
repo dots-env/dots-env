@@ -21,6 +21,6 @@ const { argv } = yargs.usage('Usage: $0 <command> [options]').options({
   }
 })
 
-processEnv(argv).then(({ envFilePath }) => {
-  execCommand(`env-cmd -f ${ envFilePath } ${ argv.command }`)
+processEnv(argv).then(() => {
+  execCommand(`env-cmd -f .env ${ argv.command }`)
 })
