@@ -86,9 +86,10 @@ dots-env -p './envs/' -c 'node index.js' -e my_env_file  # use /envs/.env.my_env
 Usage: _ [options] <command> [...args]
 
 Options:
-  -e, --env [envName]                 Set the file `.env.[fileName]` to use (default envName: development)
+  -e, --env [name]                 Set the file `.env.[fileName]` to use (default name: development)
   -l, --local [boolean]               Set the `.local` file based on `--env`
   -p, --envPath [path]                Set the path of your `.env.*` files (default path: '.')
+  -c, --command [command]             Set the command that will execute with the selected env
 ```
 
 
