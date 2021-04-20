@@ -87,9 +87,9 @@ Usage: _ [options] <command> [...args]
 
 Options:
   -e, --env [name]                 Set the file `.env.[fileName]` to use (default name: development)
-  -l, --local [boolean]               Set the `.local` file based on `--env`
-  -p, --envPath [path]                Set the path of your `.env.*` files (default path: '.')
-  -c, --command [command]             REQUIRED! Set the command that will execute with the selected env. 
+  -l, --local [boolean]            Set the `.local` file based on `--env`
+  -p, --envPath [path]             Set the path of your `.env.*` files (default path: '.')
+  -c, --command [command]          REQUIRED! Set the command that will execute with the selected env. 
 ```
 
 
