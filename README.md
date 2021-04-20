@@ -102,8 +102,8 @@ You can use the dots-env on your node script like this:
 const { processEnv, execCommand } = require('dots-env')
 
 processEnv({
-  local: true,
-  env: 'staging',
+  // local: false,
+  // env: 'development',
   envPath: './envs/'
 }).then(() => {
   execCommand('yarn start')
