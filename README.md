@@ -125,7 +125,6 @@ This script will do all magic and return a promise that will be resolved when .e
   originalEnvPath, // path of .env[envName]
   destinationEnvPath, // path of .env created by dots-env
   local, // boolean flag
-  argv // all arguments send to script 
 }
 ```
 
