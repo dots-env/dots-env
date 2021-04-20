@@ -1,0 +1,20 @@
+{
+  "name": "dots-env",
+  "version": "1.0.0",
+  "main": "index.js",
+  "author": "Guilherme Monte <gmonte@inf.ufsm.br>",
+  "repository": {
+    "type": "git",
+    "url": "http://github.com/gmonte/dots-env"
+  },
+  "license": "MIT",
+  "bin": {
+    "dots-env": "index.js"
+  },
+  "devDependencies": {
+    "dotenv": "^8.2.0",
+    "env-cmd": "^10.1.0",
+    "lodash": "^4.17.21",
+    "yargs": "^15.4.1"
+  }
+}
