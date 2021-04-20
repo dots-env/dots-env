@@ -101,7 +101,7 @@ node start.js -e staging -l
 #### processEnv
 
 This script will do all magic and return a promise that will be resolved when .env file was created. This promise return an object with:
-```json
+```
 {
   envFilePath, // combination of envPath and .env[envName]
   envFile, // .env[envName]
