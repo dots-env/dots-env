@@ -20,8 +20,17 @@ const execCommand = (command, options = {}, argvException = []) => new Promise((
 
   const ignoredArgvs = [
     ...argvException,
+    { param: '-e', hasValue: true },
     { param: '--env', hasValue: true },
-    { param: '--local', hasValue: false }
+    
+    { param: '-l', hasValue: false },
+    { param: '--local', hasValue: false },
+    
+    { param: '-c', hasValue: true },
+    { param: '--command', hasValue: true },
+
+    { param: '-p', hasValue: true },
+    { param: '--envPath', hasValue: true },
   ]
 
   argvs = filter(argvs, (argv, i) => {
