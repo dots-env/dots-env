@@ -41,7 +41,7 @@ So, we recommend that you add the `.env` into `.gitignore` because it will be re
 
 ### Using other env files
 
-To use other env files, create your `.env.staging` or `.env.production` or `.env.*`, and pass the parameter `--env` or just `-e` with the option:
+To use other env files, create your `.env.staging` or `.env.production` or `.env.*`, and pass the argument `--env` or just `-e` with the option:
 
 ```sh
 dots-env -c 'node index.js' # use .env.development
@@ -52,7 +52,7 @@ dots-env -c 'node index.js' -e my_env_file # use .env.my_env_file
 
 ### Using custom **local** env file 
 
-To use a local env file, just create it with `.local` on the end of filename, and pass the parameter `--local` or just `-l` 
+To use a local env file, just create it with `.local` on the end of filename, and pass the argument `--local` or just `-l` 
 
 ```sh
 dots-env -c 'node index.js' -l # use .env.development.local
@@ -63,7 +63,7 @@ dots-env -c 'node index.js' -e my_env_file -l # use .env.my_env_file.local
 
 ### Using custom env file path
 
-If yours .env files are into another directory, you can use the `--envPath`, or just `-p` to change this:
+If yours .env files are into another directory, you can use the argument `--envPath`, or just `-p` to change this:
 
 ```sh
 # - envs/
