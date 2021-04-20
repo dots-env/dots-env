@@ -4,6 +4,9 @@ const path = require('path')
 const filter = require('lodash/filter')
 const find = require('lodash/find')
 const isArray = require('lodash/isArray')
+const reduce = require('lodash/reduce')
+
+const { options: argvOptions } = require('../argv')
 
 const getTerminalType = () => {
   switch (process.platform) {
@@ -16,22 +19,17 @@ const getTerminalType = () => {
 }
 
 const execCommand = (command, options = {}, argvException = []) => new Promise((resolve, reject) => {
-  let argvs = isArray(process.argv) ? process.argv.slice(2) : []
 
   const ignoredArgvs = [
     ...argvException,
-    { param: '-e', hasValue: true },
-    { param: '--env', hasValue: true },
-    
-    { param: '-l', hasValue: false },
-    { param: '--local', hasValue: false },
-    
-    { param: '-c', hasValue: true },
-    { param: '--command', hasValue: true },
-
-    { param: '-p', hasValue: true },
-    { param: '--envPath', hasValue: true },
+    ...reduce(argvOptions, (acc, option, optionName) => [
+      ...acc,
+      { param: `--${ optionName }`, hasValue: !!option.nargs },
+      { param: `-${ option.alias }`, hasValue: !!option.nargs }
+    ], [])
   ]
+
+  let argvs = isArray(process.argv) ? process.argv.slice(2) : []
 
   argvs = filter(argvs, (argv, i) => {
     const ignoredParam = find(ignoredArgvs, { param: argv })

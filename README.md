@@ -101,13 +101,17 @@ You can use the dots-env on your node script like this:
 // start.js
 const { processEnv, execCommand } = require('dots-env')
 
-processEnv().then(() => {
+processEnv({
+  local: true,
+  env: 'staging',
+  envPath: './envs/'
+}).then(() => {
   execCommand('yarn start')
 })
 
 ```
 
-So, to use it you need pass the dots-env arguments to your script. Example:
+If you do not pass some parameters to `processEnv`, you can set the values of this missing arguments by cli when executing your script. Example:
 ```sh
 node start.js -e staging -l
 ```
@@ -117,8 +121,9 @@ node start.js -e staging -l
 This script will do all magic and return a promise that will be resolved when .env file was created. This promise return an object with:
 ```
 {
-  envFilePath, // combination of envPath and .env[envName]
   envFile, // .env[envName]
+  originalEnvPath, // path of .env[envName]
+  destinationEnvPath, // path of .env created by dots-env
   local, // boolean flag
   argv // all arguments send to script 
 }

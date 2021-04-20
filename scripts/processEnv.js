@@ -1,33 +1,15 @@
 const fs = require('fs')
 const path = require('path')
-const yargs = require('yargs')
 const dotenv = require('dotenv')
 
-const processEnv = () => new Promise(
-  async (resolve) => {
-    const { argv } = yargs.usage('Usage: $0 <command> [options]').options({
-      env: {
-        alias: 'e',
-        default: 'development',
-        demandOption: false,
-        describe: 'Environment',
-        nargs: 1
-      },
-      local: {
-        alias: 'l',
-        type: 'boolean',
-        describe: 'Get .env?(.*).local'
-      },
-      envPath: {
-        alias: 'p',
-        default: '',
-        demandOption: false,
-        describe: 'Path of original .env?(.*) file',
-        nargs: 1
-      }
-    })
+const { argv } = require('../argv')
 
-    const { env, local, envPath } = argv
+const processEnv = ({
+  local = argv.local,
+  env = argv.env,
+  envPath = argv.envPath
+} = {}) => new Promise(
+  async (resolve) => {
 
     let envFile = `.env${env ? `.${env}` : ''}`
     if (!fs.existsSync(path.resolve(process.cwd(), `${envPath}${envFile}`))) {
@@ -65,13 +47,12 @@ const processEnv = () => new Promise(
           process.env[configName] = configValue
         }
       )
-      process.env.ENVFILE = envFile
 
       resolve({
-        envFilePath: `${envPath}${envFile}`,
         envFile,
-        local,
-        argv
+        originalEnvPath,
+        destinationEnvPath,
+        local
       })
     } catch (error) {
       console.error(`error: ${ error.toString() }`)
