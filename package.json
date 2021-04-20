@@ -1,6 +1,6 @@
 {
   "name": "dots-env",
-  "version": "1.0.7",
+  "version": "1.0.8",
   "main": "index.js",
   "author": "Guilherme Monte <gmonte@inf.ufsm.br>",
   "repository": {
