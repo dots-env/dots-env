@@ -50,7 +50,7 @@ Change your .env section from .gitignore to:
 ### Using env file
 
 This package assume that your project have an `.env.development` file to use it.
-The dots-env will create an `.env` at the root of the application with the content of your `.env.*` and will inject this content on `process.env`.
+The dots-env will create an `.env` at the root of the application with the content of your `.env.*` and it will inject the content on `process.env`.
 So, we recommend that you add the `.env` into `.gitignore` because it will be reconstruct always that dots-env script run.
 
 ### Using other env files
