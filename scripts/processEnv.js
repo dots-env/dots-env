@@ -11,7 +11,7 @@ const processEnv = ({
   destinationPath = argv.destinationPath
 } = {}) => new Promise(
   async (resolve) => {
-
+    
     let envFile = `.env${env ? `.${env}` : ''}`
     if (!fs.existsSync(path.resolve(process.cwd(), `${envPath}${envFile}`))) {
       envFile = `${envPath}.env`
@@ -27,7 +27,7 @@ const processEnv = ({
     const originalEnv = `${envPath}${envFile}`
     const originalEnvPath = path.resolve(process.cwd(), originalEnv)
     
-    const originalDestination = `${destinationPath ? `${destinationPath}/` : ''}.env`
+    const originalDestination = `${destinationPath}.env`
     const destinationEnvPath = path.resolve(process.cwd(), originalDestination)
 
     console.info(`>>> Using env file: ${originalEnv}`)
