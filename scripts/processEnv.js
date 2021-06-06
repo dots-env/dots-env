@@ -7,7 +7,8 @@ const { argv } = require('../argv')
 const processEnv = ({
   local = argv.local,
   env = argv.env,
-  envPath = argv.envPath
+  envPath = argv.envPath,
+  destinationPath = argv.destinationPath
 } = {}) => new Promise(
   async (resolve) => {
 
@@ -25,7 +26,9 @@ const processEnv = ({
 
     const originalEnv = `${envPath}${envFile}`
     const originalEnvPath = path.resolve(process.cwd(), originalEnv)
-    const destinationEnvPath = path.resolve(process.cwd(), '.env')
+    
+    const originalDestination = `${destinationPath ? `${destinationPath}/` : ''}.env`
+    const destinationEnvPath = path.resolve(process.cwd(), originalDestination)
 
     console.info(`>>> Using env file: ${originalEnv}`)
 
@@ -34,6 +37,7 @@ const processEnv = ({
         if (error) {
           return rej(error)
         }
+        console.info(`>>> Created ${originalDestination}`)
         return res()
       })
     })
@@ -41,15 +45,19 @@ const processEnv = ({
     try {
       await createRootEnv()
 
-      const envConfig = dotenv.parse(fs.readFileSync(destinationEnvPath))
+      const envValues = dotenv.parse(fs.readFileSync(destinationEnvPath))
 
-      Object.entries(envConfig).map(
-        ([configName, configValue]) => {
-          process.env[configName] = configValue
-        }
-      )
+      const loadEnvValues = (values = envValues) => {
+        Object.entries(values).map(
+          ([configName, configValue]) => {
+            process.env[configName] = configValue
+          }
+        )
+      }
 
       resolve({
+        envValues,
+        loadEnvValues,
         envFile,
         originalEnvPath,
         destinationEnvPath,

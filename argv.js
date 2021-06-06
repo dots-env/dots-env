@@ -27,6 +27,13 @@ const options = {
     demandOption: false,
     describe: 'Path of original .env?(.*) file',
     nargs: 1
+  },
+  destinationPath: {
+    alias: 'd',
+    default: '',
+    demandOption: false,
+    describe: 'Path of .env will be created',
+    nargs: 1
   }
 }
 

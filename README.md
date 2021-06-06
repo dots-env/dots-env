@@ -104,6 +104,7 @@ const { processEnv, execCommand } = require('dots-env')
 processEnv({
   // local: false,
   // env: 'development',
+  // destinationPath: '',
   envPath: './envs/'
 }).then(() => {
   execCommand('yarn start')
@@ -125,6 +126,8 @@ This script will do all magic and return a promise that will be resolved when .e
   originalEnvPath, // path of .env[envName]
   destinationEnvPath, // path of .env created by dots-env
   local, // boolean flag
+  envValues, // object with env values
+  loadEnvValues, // function to reload process.env
 }
 ```
 
