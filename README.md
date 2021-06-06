@@ -142,6 +142,7 @@ Arguments:
   -e, --env [envName]              Set the file `.env.[envName]` to use (default envName: development)
   -l, --local [boolean]            Set the `.local` file based on `--env`
   -p, --envPath [path]             Set the path of your `.env.*` files (default path: '.')
+  -d, --destinationPath [path]     Set the path that `.env` will be created (default path: '.')
   -c, --command [command]          REQUIRED! Set the command that will execute with the selected env. 
 ```
 
