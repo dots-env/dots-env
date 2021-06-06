@@ -126,8 +126,8 @@ This script will do all magic and return a promise that will be resolved when .e
   originalEnvPath, // path of .env[envName]
   destinationEnvPath, // path of .env created by dots-env
   local, // boolean flag
-  envValues, // object with env values
-  loadEnvValues, // function to reload process.env
+  getEnvValues, // function that return an object with env values
+  reloadEnvValues, // function to reload process.env
 }
 ```
 

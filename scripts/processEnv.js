@@ -43,21 +43,22 @@ const processEnv = ({
     })
 
     try {
-      await createRootEnv()
+      const getEnvValues = () => dotenv.parse(fs.readFileSync(destinationEnvPath))
 
-      const envValues = dotenv.parse(fs.readFileSync(destinationEnvPath))
-
-      const loadEnvValues = (values = envValues) => {
-        Object.entries(values).map(
+      const reloadEnvValues = () => {
+        Object.entries(getEnvValues()).map(
           ([configName, configValue]) => {
             process.env[configName] = configValue
           }
         )
       }
 
+      await createRootEnv()
+      reloadEnvValues()
+
       resolve({
-        envValues,
-        loadEnvValues,
+        getEnvValues,
+        reloadEnvValues,
         envFile,
         originalEnvPath,
         destinationEnvPath,
