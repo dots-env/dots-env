@@ -57,6 +57,7 @@ const processEnv = ({
       reloadEnvValues()
 
       resolve({
+        envName: env,
         getEnvValues,
         reloadEnvValues,
         envFile,

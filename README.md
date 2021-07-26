@@ -122,6 +122,7 @@ node start.js -e staging -l
 This script will do all magic and return a promise that will be resolved when .env file was created. This promise return an object with:
 ```
 {
+  envName, // environment name
   envFile, // .env[envName]
   originalEnvPath, // path of .env[envName]
   destinationEnvPath, // path of .env created by dots-env
