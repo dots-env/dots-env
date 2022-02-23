@@ -4,13 +4,19 @@ const dotenv = require('dotenv')
 
 const { argv } = require('../argv')
 
-const processEnv = ({
-  local = argv.local,
-  env = argv.env,
-  envPath = argv.envPath,
-  destinationPath = argv.destinationPath
-} = {}) => new Promise(
+const customConfig = require('../custom-config')
+
+const processEnv = (configs) => new Promise(
   async (resolve) => {
+
+    const allConfigs = { ...customConfig, ...configs }
+
+    const {
+      local = argv.local,
+      env = argv.env,
+      envPath = argv.envPath,
+      destinationPath = argv.destinationPath
+    } = allConfigs
     
     let envFile = `.env${env ? `.${env}` : ''}`
     if (!fs.existsSync(path.resolve(process.cwd(), `${envPath}${envFile}`))) {
