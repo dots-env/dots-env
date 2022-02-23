@@ -1,5 +1,6 @@
 const { spawn } = require('child_process')
 const path = require('path')
+const fs = require('fs')
 
 const filter = require('lodash/filter')
 const find = require('lodash/find')
