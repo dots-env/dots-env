@@ -41,12 +41,16 @@ const execCommand = (command, options = {}, argvException = []) => new Promise((
     return true
   })
 
+  let envCmd = ''
   const envPath = path.resolve(process.cwd(), '.env')
+  if (fs.existsSync(envPath)) {
+    envCmd = `env-cmd -f ${ envPath }`
+  }
 
   try {
     const childProcess = spawn(
       getTerminalType(),
-      ['-c', `env-cmd -f ${ envPath } ${ command } ${ argvs.join(' ') }`],
+      ['-c', `${envCmd} ${ command } ${ argvs.join(' ') }`],
       { stdio: 'inherit', ...options }
     )
 
