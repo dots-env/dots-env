@@ -134,6 +134,23 @@ This script will do all magic and return a promise that will be resolved when .e
 
 #### execCommand
 This method are a promise that execute one shell script with the env selected.
+
+
+## Custom configs
+
+You can set custom settings to your project creating the `dots-env.config.js` file on root of your project and return the options as a object. You are able to overwrite this settings when you invoke a CLI or programmatically method.
+
+```js
+// dots-env.config.js
+module.exports = {
+  env: 'development',
+  local: false,
+  envPath: '.',
+  destinationPath: '.'
+}
+```
+
+
 ## 📜 Help
 
 ```text
@@ -147,7 +164,6 @@ Arguments:
   -c, --command [command]          REQUIRED! Set the command that will execute with the selected env. 
 ```
 
-
 ## 📋 Contributing Guide
 
-If you would like to write tests or improve this package, please sent your PR! :D  
+If you would like to write types, tests or improve this package, please sent your PR! :D  
