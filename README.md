@@ -145,8 +145,8 @@ You can set custom configs to your project creating the `dots-env.config.js` fil
 module.exports = {
   env: 'development',
   local: false,
-  envPath: '.',
-  destinationPath: '.'
+  envPath: '',
+  destinationPath: ''
 }
 ```
 
