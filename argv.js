@@ -10,7 +10,7 @@ const options = {
   },
   env: {
     alias: 'e',
-    default: 'development',
+    default: '',
     demandOption: false,
     describe: 'Environment',
     nargs: 1

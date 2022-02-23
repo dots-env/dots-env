@@ -1,21 +1,25 @@
 const fs = require('fs')
 const path = require('path')
 const dotenv = require('dotenv')
+const mapValues = require('lodash/mapValues')
 
-const { argv } = require('../argv')
-
+const defaultConfig = require('../default-config')
 const customConfig = require('../custom-config')
 
-const processEnv = (configs) => new Promise(
+const processEnv = (configs = {}) => new Promise(
   async (resolve) => {
 
-    const allConfigs = { ...customConfig, ...configs }
+    const parsedConfigs = mapValues(configs, (configValue, configName) => {
+      return configValue !== '' ? configValue : customConfig[configName]
+    })
+
+    const allConfigs = { ...customConfig, ...parsedConfigs }
 
     const {
-      local = argv.local,
-      env = argv.env,
-      envPath = argv.envPath,
-      destinationPath = argv.destinationPath
+      local = defaultConfig.local,
+      env = defaultConfig.env,
+      envPath = defaultConfig.envPath,
+      destinationPath = defaultConfig.destinationPath
     } = allConfigs
     
     let envFile = `.env${env ? `.${env}` : ''}`
