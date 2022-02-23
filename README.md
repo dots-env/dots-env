@@ -136,9 +136,9 @@ This script will do all magic and return a promise that will be resolved when .e
 This method are a promise that execute one shell script with the env selected.
 
 
-## Custom configs
+## Setting default configs
 
-You can set custom settings to your project creating the `dots-env.config.js` file on root of your project and return the options as a object. You are able to overwrite this settings when you invoke a CLI or programmatically method.
+You can set custom configs to your project creating the `dots-env.config.js` file on root of your project and export your default configurations as a object. You are able to overwrite the configurations when you invoke CLI or call the `processEnv` method.
 
 ```js
 // dots-env.config.js
