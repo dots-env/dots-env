@@ -5,6 +5,9 @@ const mapValues = require('lodash/mapValues')
 
 const defaultConfig = require('../default-config')
 const customConfig = require('../custom-config')
+const { argv } = require('../argv')
+
+const { command, ...options } = argv
 
 const processEnv = (configs = {}) => new Promise(
   async (resolve) => {
@@ -81,4 +84,4 @@ const processEnv = (configs = {}) => new Promise(
   }
 )
 
-module.exports = processEnv
+module.exports = (opts = {}) => processEnv({...options, ...opts})
