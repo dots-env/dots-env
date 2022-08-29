@@ -2,6 +2,7 @@ const fs = require('fs')
 const path = require('path')
 const dotenv = require('dotenv')
 const mapValues = require('lodash/mapValues')
+const emoji = require("node-emoji")
 
 const defaultConfig = require('../default-config')
 const customConfig = require('../custom-config')
@@ -43,14 +44,14 @@ const processEnv = (configs = {}) => new Promise(
     const originalDestination = `${destinationPath}.env`
     const destinationEnvPath = path.resolve(process.cwd(), originalDestination)
 
-    console.info(`\x1b[36>>> Using env file: ${originalEnv}`)
+    console.info(`\x1b[36m${emoji.get('rocket')} Using env file: ${originalEnv}`)
 
     const createRootEnv = () => new Promise((res, rej) => {
       fs.copyFile(originalEnvPath, destinationEnvPath, (error) => {
         if (error) {
           return rej(error)
         }
-        console.info(`\x1b[90>>> Created ${originalDestination}`)
+        console.info(`\x1b[90m${emoji.get('clipboard')} Created ${originalDestination}`)
         return res()
       })
     })
