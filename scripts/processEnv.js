@@ -43,14 +43,14 @@ const processEnv = (configs = {}) => new Promise(
     const originalDestination = `${destinationPath}.env`
     const destinationEnvPath = path.resolve(process.cwd(), originalDestination)
 
-    console.info(`>>> Using env file: ${originalEnv}`)
+    console.info(`\x1b[36>>> Using env file: ${originalEnv}`)
 
     const createRootEnv = () => new Promise((res, rej) => {
       fs.copyFile(originalEnvPath, destinationEnvPath, (error) => {
         if (error) {
           return rej(error)
         }
-        console.info(`>>> Created ${originalDestination}`)
+        console.info(`\x1b[90>>> Created ${originalDestination}`)
         return res()
       })
     })

@@ -49,6 +49,7 @@ const execCommand = (command, options = {}, argvException = []) => new Promise((
   }
 
   try {
+    console.info(`\x1b[90m$ ${command}`)
     const childProcess = spawn(
       getTerminalType(),
       ['-c', `${envCmd} ${ command } ${ argvs.join(' ') }`],
