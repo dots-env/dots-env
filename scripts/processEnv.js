@@ -10,6 +10,8 @@ const { argv } = require('../argv')
 
 const { command, ...options } = argv
 
+const emojiLog = emoji.get('arrow_right_hook')
+
 const processEnv = (configs = {}) => new Promise(
   async (resolve) => {
 
@@ -44,14 +46,14 @@ const processEnv = (configs = {}) => new Promise(
     const originalDestination = `${destinationPath}.env`
     const destinationEnvPath = path.resolve(process.cwd(), originalDestination)
 
-    console.info(`\x1b[36m${emoji.get('rocket')} Using env file: ${originalEnv}`)
+    console.info(`\x1b[36m${emojiLog} Using env file: ${originalEnv}`)
 
     const createRootEnv = () => new Promise((res, rej) => {
       fs.copyFile(originalEnvPath, destinationEnvPath, (error) => {
         if (error) {
           return rej(error)
         }
-        console.info(`\x1b[90m${emoji.get('clipboard')} Created ${originalDestination}`)
+        console.info(`\x1b[90m${emojiLog} Created ${originalDestination}`)
         return res()
       })
     })
